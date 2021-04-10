@@ -1,0 +1,3 @@
+/home/trunk/jinxinyu_project/private/osqp_tutorial/c_plus/osqp/build/CMakeFiles/rebuild_cache.dir
+/home/trunk/jinxinyu_project/private/osqp_tutorial/c_plus/osqp/build/CMakeFiles/edit_cache.dir
+/home/trunk/jinxinyu_project/private/osqp_tutorial/c_plus/osqp/build/CMakeFiles/main.dir
