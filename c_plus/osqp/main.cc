@@ -1,5 +1,15 @@
 #include "iostream"
 #include "osqp/osqp.h"
+/**
+ * min 0.5 x^T P x + Q x
+ * l <= Ax <= i
+ * p = | 4 1 |  Q = | 1  1 |
+ *     | 1 2 |
+ * A = | 1 1 |  l = | 1 |  u = |  1  |
+ *     | 1 0 |      | 0 |      | 0.7 |
+ *     | 0 -1|      | 0 |      | 0.7 |
+ * */
+
 
 int main(int argc, char **argv) {
   // Load problem data
