@@ -45,7 +45,7 @@ void stupid_jin() {
 }
 
 int main() {
-    MatrixXf_pack();
+  MatrixXf_pack();
   //  SparseMatrix_pack();
   //  eric_simple_test();
 
