@@ -1,3 +1,9 @@
+/**
+ * MatrixXf
+ * MatrixXd
+ * Matrix2d
+ * */
+
 #include "OsqpEigen/OsqpEigen.h"
 #include <Eigen/Dense>
 #include <iostream>
