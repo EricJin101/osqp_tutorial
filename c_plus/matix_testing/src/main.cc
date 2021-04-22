@@ -1,23 +1,6 @@
-
-/*
-OSQP solves the convex quadratic optimization problem:
-
-min_x 0.5 * x'Hx + f'x
-s.t.  l <= Ax <= u
-     | 1  -1  1 |       | 2 |
- H = |-1   2 -2 | , f = |-3 |
-     | 1  -2  4 |       | 1 |
-
-  0 <= x <= 1 ,  sum (x) = 1/2
-
- */
-
-// osqp-eigen
 #include "OsqpEigen/OsqpEigen.h"
-// eigen
 #include <Eigen/Dense>
 #include <iostream>
-int eric_simple_test();
 void MatrixXf_pack();
 void SparseMatrix_pack();
 using namespace Eigen;
@@ -42,14 +25,6 @@ void stupid_jin() {
   Vector3d v(1, 2, 3);
   Vector3d w(1, 0, 0);
   std::cout << "-v + w - v =\n" << -v + w - v << std::endl;
-}
-
-int main() {
-  MatrixXf_pack();
-  //  SparseMatrix_pack();
-  //  eric_simple_test();
-
-  return 0;
 }
 
 void MatrixXf_pack() {
@@ -114,5 +89,12 @@ void SparseMatrix_pack() {
   std::cout << b3 << std::endl;
   std::cout << "\nsize: \n" << b4.size() << std::endl;
   std::cout << b4 << std::endl;
+}
+
+int main() {
+  MatrixXf_pack();
+  SparseMatrix_pack();
+
+  return 0;
 }
 
