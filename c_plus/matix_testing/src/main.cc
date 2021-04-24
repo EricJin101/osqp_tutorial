@@ -37,17 +37,20 @@ void MatrixXf_pack() {
   Eigen::MatrixXf a, b, c;
   a.resize(2, 2);
   b.resize(2, 2);
-  c.resize(4, 2);
+  c.resize(5, 5);
   a << 1, 2, 3, 4;
   b << 5, 6, 7, 8;
   c.block<2, 2>(0, 0) = a;
-  c.block<2, 2>(2, 0) = b;
+  c.block<2, 2>(2, 1) = b;
   std::cout << "a: \n" << a << "\n\n";
   std::cout << "b: \n" << b << "\n\n";
   std::cout << "c: \n" << c << "\n\n";
 }
 
 void SparseMatrix_pack() {
+  // sparse matrix can not use
+  // c << a, b;
+  // c.block<>() = a;
   Eigen::SparseMatrix<double> m1(3, 2), m2(2, 2);
   m1.insert(0, 0) = 1;
   m1.insert(0, 1) = 2;
@@ -55,7 +58,7 @@ void SparseMatrix_pack() {
   m1.insert(1, 1) = 5;
   m1.insert(2, 0) = 7;
   m1.insert(2, 1) = 8;
-  std::cout << m1 << "\nm1 \n";
+  std::cout << "\nm1 \n" << m1;
   Eigen::SparseMatrix<double> m1_tp = m1.transpose();
 
   //  Eigen::SparseMatrix<double> m2(3,2);
@@ -64,7 +67,7 @@ void SparseMatrix_pack() {
   m2.insert(1, 0) = 14;
   m2.insert(1, 1) = 15;
 
-  std::cout << m2 << "\nm2 \n";
+  std::cout << "\nm2 \n" << m2;
   Eigen::SparseMatrix<double> m2_tp = m2.transpose();
 
   Eigen::SparseMatrix<double> m_top_re(2, 5);
