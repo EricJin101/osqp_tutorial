@@ -11,7 +11,7 @@ void MatrixXf_pack();
 void SparseMatrix_pack();
 using namespace Eigen;
 
-void stupid_jin() {
+void Matrix2d_operate() {
   Matrix2d a;
   a << 1, 2, 3, 4;
 
@@ -31,6 +31,20 @@ void stupid_jin() {
   Vector3d v(1, 2, 3);
   Vector3d w(1, 0, 0);
   std::cout << "-v + w - v =\n" << -v + w - v << std::endl;
+}
+
+void MatrixXd_pack(){
+  Eigen::MatrixXd a(1, 3), b, c;
+  a << 1, 2, 3;
+  std::cout << "a: \n" << a << "\n\n";
+
+  b.resize(1, 3);
+  b << 4, 5, 6;
+  std::cout << "b: \n" << b << "\n\n";
+
+  c.resize(2, 3);  // before these operation, give it a size
+  c << a, b;
+  std::cout << "c: \n" << c << "\n\n";
 }
 
 void MatrixXf_pack() {
@@ -101,9 +115,10 @@ void SparseMatrix_pack() {
 }
 
 int main() {
+  Matrix2d_operate();
   MatrixXf_pack();
   SparseMatrix_pack();
-
+  MatrixXd_pack();
   return 0;
 }
 
