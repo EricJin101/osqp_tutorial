@@ -1,7 +1,8 @@
 /**
- * MatrixXf
- * MatrixXd
- * Matrix2d
+ * MatrixXf      Matrix of floats
+ * MatrixXd      Matrix of doubles
+ * Matrix3d is a fixed-size 3x3 matrix type of doubles, and \c MatrixXf is a dynamic-size matrix of floats
+ * Vector4cf is a fixed-size vector of 4 complex floats
  * */
 
 #include "OsqpEigen/OsqpEigen.h"
