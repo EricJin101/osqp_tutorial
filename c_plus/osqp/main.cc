@@ -11,7 +11,8 @@
  * */
 
 
-int main(int argc, char **argv) {
+//int main(int argc, char **argv) {
+int main() {
   // Load problem data
   c_float P_x[3] = {
       4.0, 1.0, 2.0,
@@ -45,9 +46,6 @@ int main(int argc, char **argv) {
   c_int n = 2;
   c_int m = 3;
 
-  // Exitflag
-  c_int exitflag = 0;
-
   // Workspace structures
   OSQPWorkspace *work;
   OSQPSettings *settings = (OSQPSettings *)c_malloc(sizeof(OSQPSettings));
@@ -71,7 +69,7 @@ int main(int argc, char **argv) {
   }
 
   // Setup workspace
-  exitflag = osqp_setup(&work, data, settings);
+  osqp_setup(&work, data, settings);
 
   // Solve Problem
   osqp_solve(work);
@@ -84,5 +82,5 @@ int main(int argc, char **argv) {
   }
   if (settings) c_free(settings);
 
-  return exitflag;
+  return 1;
 };
