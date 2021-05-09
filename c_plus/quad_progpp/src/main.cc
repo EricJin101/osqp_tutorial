@@ -46,12 +46,8 @@ int main (int argc, char *const argv[]) {
   n = 2;
   G.resize(n, n);
   {
-//		std::istringstream is("4, -2,"
-//													"-2, 4 ");
-		std::istringstream is("22, 100, 700, 5500"
-                          "100, 702, 5500, 46060"
-                          "700, 5500, 46110, 401800"
-                          "5500, 46060, 401800, 3600460");
+		std::istringstream is("4, -2,"
+													"-2, 4 ");
 
 		for (int i = 0; i < n; i++)	
 			for (int j = 0; j < n; j++)
@@ -60,8 +56,7 @@ int main (int argc, char *const argv[]) {
 	
   g0.resize(n);
   {
-//		std::istringstream is("6.0, 0.0 ");
-		std::istringstream is("-400, -2000, -14000, -110000");
+		std::istringstream is("6.0, 0.0 ");
 
 		for (int i = 0; i < n; i++)
 			is >> g0[i] >> ch;
