@@ -21,3 +21,9 @@ Copyright (C) 2007-2016 Luca Di Gaspero, [MIT License](LICENSE).
 ## References
 
 D. Goldfarb, A. Idnani. A numerically stable dual method for solving strictly convex quadratic programs. *Mathematical Programming* 27 (1983) pp. 1-33.
+
+mkdir build
+cd build
+cmake ..
+make
+then ./src/main
