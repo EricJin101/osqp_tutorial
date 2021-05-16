@@ -115,6 +115,17 @@
 //  std::cout << sum << std::endl;
 //}
 
+template <typename T>
+void print(T a){
+  for (int i=0; i < a.nrows(); ++i){
+    std::cout << " row(" << i << "): ";
+    for (int j=0; j < a.ncols(); ++j){
+      std::cout << a[i][j] << " ";
+    }
+    std::cout << std::endl;
+  }
+}
+
 int main (int argc, char *const argv[]) {
   quadprogpp::Matrix<double> G, CE, CI;
   quadprogpp::Vector<double> g0, ce0, ci0, x;
@@ -122,28 +133,26 @@ int main (int argc, char *const argv[]) {
   double sum = 0.0;
   char ch;
 
-  n = 3; // hessian row/cols
-  G.resize(n, n);
-  { // hessian
-    std::istringstream is("1, -1, 1,"
-                          "-1, 2, -2, "
-                          "1, -2, 4 ");
-    for (int i = 0; i < n; i++)
-      for (int j = 0; j < n; j++)
-        is >> G[i][j] >> ch;
-  }
-  g0.resize(n);
-  { // gradient
-    std::istringstream is("2.0, -3.0, 1.0 ");
-    for (int i = 0; i < n; i++)
-      is >> g0[i] >> ch;
-  }
+  n = 2;
+  G.resize(n, n); // hessian row/cols
+  G[0][0] = 4;
+  G[0][1] = -2;
+  G[1][0] = -2;
+  G[1][1] = 4;
+  print(G);
+
+  g0.resize(n); // gradient
+  g0[0] = 6;
+  g0[1] = 0;
+  std::cout << g0[0] << " ";
+  std::cout << g0[1] << " ";
 
   m = 1; // equality linearMatrix | 1, 1|
   CE.resize(n, m);
+  CE[0][0] = 1;
+  CE[1][0] = 1;
   {
     std::istringstream is("1.0, "
-                          "1.0, "
                           "1.0 ");
 
     for (int i = 0; i < n; i++)
@@ -151,33 +160,24 @@ int main (int argc, char *const argv[]) {
         is >> CE[i][j] >> ch;
   }
 
-  ce0.resize(m);
-  { // equality bound
-    std::istringstream is("0.5 ");
+  ce0.resize(m); // equality bound
+  ce0[0] = -3.0;
 
-    for (int j = 0; j < m; j++)
-      is >> ce0[j] >> ch;
-  }
+  p = 3;
+  CI.resize(n, p); // inequality linearMatrix
+  CI[0][0] = 1.0;
+  CI[0][1] = 0.0;
+  CI[0][2] = 1.0;
 
-  p = 1;
-  CI.resize(n, p);
-  { // inequality linearMatrix
-    std::istringstream is("1.0, "
-                          "1.0, "
-                          "1.0 ");
+  CI[1][0] = 0.0;
+  CI[1][1] = 1.0;
+  CI[1][2] = 1.0;
 
-    for (int i = 0; i < n; i++)
-      for (int j = 0; j < p; j++)
-        is >> CI[i][j] >> ch;
-  }
+  ci0.resize(p); // - lowerBound
+  ci0[0] = 0.0;
+  ci0[1] = 0.0;
+  ci0[2] = -2.0;
 
-  ci0.resize(p);
-  { // lowerBound
-    std::istringstream is("0.0, 0.0, 0.0 ");
-
-    for (int j = 0; j < p; j++)
-      is >> ci0[j] >> ch;
-  }
   x.resize(n);
 
   std::cout << "f: " << solve_quadprog(G, g0, CE, ce0, CI, ci0, x) << std::endl;
@@ -188,9 +188,8 @@ int main (int argc, char *const argv[]) {
   /* FOR DOUBLE CHECKING COST since in the solve_quadprog routine the matrix G is modified */
 
   {
-    std::istringstream is("1, -1, 1,"
-                          "-1, 2, -2, "
-                          "1, -2, 4 ");
+    std::istringstream is("4, -2,"
+                          "-2, 4 ");
 
     for (int i = 0; i < n; i++)
       for (int j = 0; j < n; j++)
