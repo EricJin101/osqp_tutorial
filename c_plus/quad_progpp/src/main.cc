@@ -179,14 +179,12 @@ int main (int argc, char *const argv[]) {
 
   /* FOR DOUBLE CHECKING COST since in the solve_quadprog routine the matrix G is modified */
 
-  {
-    std::istringstream is("4, -2,"
-                          "-2, 4 ");
-
-    for (int i = 0; i < n; i++)
-      for (int j = 0; j < n; j++)
-        is >> G[i][j] >> ch;
-  }
+  n = 2;
+  G.resize(n, n); // hessian row/cols
+  G[0][0] = 4;
+  G[0][1] = -2;
+  G[1][0] = -2;
+  G[1][1] = 4;
 
   std::cout << "Double checking cost: ";
   for (int i = 0; i < n; i++)
