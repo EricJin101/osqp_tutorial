@@ -7,7 +7,7 @@
  *     | 1 2 |
  * A = | 1 1 |  l = | 1 |  u = |  1  |
  *     | 1 0 |      | 0 |      | 0.7 |
- *     | 0 -1|      | 0 |      | 0.7 |
+ *     | 0 1|      | 0 |      | 0.7 |
  * */
 
 
@@ -18,13 +18,16 @@ int main() {
   c_int P_nnz = 3;
   c_int P_i[3] = { 0, 0, 1, };
   c_int P_p[3] = { 0, 1, 3, };
+  // i = [0, 2, 4]  p = [0, 1, 0, 1] d = [4, 1, 1, 2]
+  // this is what I assume it is
+
   c_float q[2] = { 1.0, 1.0, };
   c_float A_x[4] = { 1.0, 1.0, 1.0, 1.0, };
   c_int A_nnz = 4;
   c_int A_i[4] = { 0, 1, 0, 2, };
   c_int A_p[3] = { 0, 2, 4, };
-  c_float l[3] = { 1.0, 0.0, 0.0, };
-  c_float u[3] = { 1.0, 0.7, 0.7, };
+  c_float l[3] = { 1.0, 0.0, 0.0, }; // lower bound
+  c_float u[3] = { 1.0, 0.7, 0.7, }; // upper bound
   c_int n = 2;
   c_int m = 3;
 
@@ -55,6 +58,8 @@ int main() {
 
   // Solve Problem
   osqp_solve(work);
+  printf("x1 solution is : %f\n", *work->solution->x);
+  printf("x2 solution is : %f\n", 1 - *work->solution->x);
 
   // Cleanup
   if (data) {
