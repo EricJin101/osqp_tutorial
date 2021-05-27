@@ -26,36 +26,34 @@ int testQP233() {
   // 具有线性约束和边界的二次最小化
   hessian.resize(2, 2);
   hessian.insert(0, 0) = 4;
-  hessian.insert(1, 0) = -2;
-  hessian.insert(0, 1) = -2;
-  hessian.insert(1, 1) = 4;
+  hessian.insert(1, 0) = 1;
+  hessian.insert(0, 1) = 1;
+  hessian.insert(1, 1) = 2;
 
   std::cout << "hessian:" << std::endl << hessian << std::endl;
 
   gradient.resize(2);
-  gradient << 6, 0;
+  gradient << 1, 1;
 
   std::cout << "gradient:" << std::endl << gradient << std::endl;
 
-  linearMatrix.resize(4, 2);
+  linearMatrix.resize(3, 2);
   linearMatrix.insert(0, 0) = 1;
   linearMatrix.insert(1, 0) = 1;
   linearMatrix.insert(2, 0) = 0;
-  linearMatrix.insert(3, 0) = 1;
 
   linearMatrix.insert(0, 1) = 1;
   linearMatrix.insert(1, 1) = 0;
   linearMatrix.insert(2, 1) = 1;
-  linearMatrix.insert(3, 1) = 1;
 
   std::cout << "linearMatrix:" << std::endl << linearMatrix << std::endl;
 
-  lowerBound.resize(4);
-  lowerBound << 3, 0, 0, 2;
+  lowerBound.resize(3);
+  lowerBound << 1, 0, 0;
   std::cout << "lowerBound:" << std::endl << lowerBound << std::endl;
-  upperBound.resize(4);
-  upperBound << 3, OsqpEigen::INFTY, OsqpEigen::INFTY, OsqpEigen::INFTY;
-  //  upperBound << 0, 0, 0, 0.5;
+  upperBound.resize(3);
+//  upperBound << 3, OsqpEigen::INFTY, OsqpEigen::INFTY, OsqpEigen::INFTY;
+    upperBound << 1, 0.7, 0.7;
   std::cout << "upperBound:" << std::endl << upperBound << std::endl;
 
   //  int NumberOfVariables = 3; //A矩阵的列数
