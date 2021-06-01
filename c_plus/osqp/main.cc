@@ -21,6 +21,8 @@ int main() {
 
   // i = [0, 2, 4]  p = [0, 1, 0, 1] d = [4, 1, 1, 2]
   // this is what I assume it is
+  // P is upper triangular
+  // P is symmetric
 
   c_float q[2] = { 1.0, 1.0, };
   c_float A_x[4] = { 1.0, 1.0, 1.0, 1.0, };
