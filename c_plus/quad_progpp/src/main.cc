@@ -151,14 +151,6 @@ int main (int argc, char *const argv[]) {
   CE.resize(n, m);
   CE[0][0] = 1;
   CE[1][0] = 1;
-  {
-    std::istringstream is("1.0, "
-                          "1.0 ");
-
-    for (int i = 0; i < n; i++)
-      for (int j = 0; j < m; j++)
-        is >> CE[i][j] >> ch;
-  }
 
   ce0.resize(m); // equality bound
   ce0[0] = -3.0;
